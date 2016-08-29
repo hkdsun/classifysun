@@ -35,7 +35,7 @@ class Classifier(TransactionClassifier):
 ### Usage
 Clone this repo
 ```
-git clone https://repourl
+git clone https://github.com/hkdsun/classifysun.git
 ```
 Run `main.py` with appropriate arguments.
 ```
