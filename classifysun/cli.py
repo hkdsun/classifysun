@@ -1,6 +1,7 @@
 import csv
 import yaml
 import sys
+import os
 from shutil import copyfile
 from importlib import import_module
 
@@ -22,6 +23,9 @@ def csv_rows(filename, *r_opts):
     return res
 
 def parse_yaml(filename):
+    if not os.path.exists(filename):
+        f = open(filename, 'a')
+        f.close()
     with open(filename, 'r') as f:
         return yaml.load(f)
 
@@ -48,8 +52,11 @@ def run_classifier(input_file, output_file, rules_file, classifier):
         sys.exit(1)
 
     rules = parse_yaml(rules_file)
+    if rules is None:
+        rules = {}
     classifier = classifier(rules)
     rows = csv_rows(input_file)
+
     #TODO fix this garbage
     if "Transaction Date" in rows[0][0]:
         rows = rows[1:]

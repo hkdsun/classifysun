@@ -23,7 +23,7 @@ from .classifier import TransactionClassifier
 class Classifier(TransactionClassifier):
 	def transform(self, amount):
     	return amount**2 # idk why you would do this
-    
+
     def parse_row(self, row):
     	# row is a row of the CSV file
         date = row[0] # pick the column
@@ -37,7 +37,7 @@ Clone this repo
 ```
 git clone https://repourl
 ```
-Run `main.py` with appropriate arguments.
+Run `main.py` with appropriate arguments. Python 3 is required.
 ```
 $ python main.py -h
 
@@ -54,6 +54,8 @@ optional arguments:
   -t TARGET, --target TARGET
                         classifier type <CIBC|Chase>
 ```
+
+The script creates `rules.yaml` if it doesn't exist already.
 
 ### Status
 Currently working on:

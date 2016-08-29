@@ -1,4 +1,6 @@
 from classifysun.transaction import Transaction
+from shutil import copyfile
+import yaml
 import re
 
 class TransactionClassifier(object):
@@ -15,9 +17,14 @@ class TransactionClassifier(object):
     def pretty_title(self, s):
         return " ".join(map(self.capitalize_word, s.strip().split()))
 
+    def write_yaml(self, yml, filename):
+        copyfile(filename, ".{}.backup".format(filename))
+        with open(filename, 'w') as f:
+            f.write(yaml.dump(yml, default_flow_style=False))
+
     def save_rules(self):
-        #TODO eliminate this
-        write_yaml(self.rules, "rules.yaml")
+        #TODO eliminate this asap
+        self.write_yaml(self.rules, "rules.yaml")
 
     def menu_option(self, menu):
         keys = sorted(menu.keys())
