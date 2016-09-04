@@ -1,4 +1,5 @@
 from .classifier import TransactionClassifier
+import re
 
 class Classifier(TransactionClassifier):
     def parse_amount(self, row):
